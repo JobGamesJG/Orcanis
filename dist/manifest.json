@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "JobK Tools",
+    "description": "Variantion of tools made by JobK",
+    "version": "1.0.0",
+    "icons": {
+        "512": "./icons/icon-512.png"
+    },
+    "permissions": ["tabs"],
+    "host_permissions": ["<all_urls>"],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://mijn.lisahockey.nl/*"],
+            "js": ["reorder.js"]
+        }
+    ]
+}

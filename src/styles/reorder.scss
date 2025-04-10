@@ -1,0 +1,50 @@
+$background: #1b1b23;
+$background-secondary: #b3c6fa;
+
+$primary: #007bff;
+$Hbs-primary: #6c201d;
+$Hbs-primary-hover: #743a37;
+
+$text: #fff;
+$text-dark: #999;
+
+.reorder-button {
+    cursor: pointer;
+
+    background: $Hbs-primary;
+    color: $text;
+
+    font-weight: bold;
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    padding: 0.4rem 1rem;
+    border: 1px solid #dcdfe6;
+    border-radius: 0.4rem;
+
+    transition: all 0.1s;
+
+    &:hover {
+        background-color: $Hbs-primary-hover;
+    }
+}
+
+.paidData-wrapper {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    p {
+        font-weight: bold;
+
+        margin: 0;
+    }
+
+    a {
+        margin-left: 0.3rem;
+    }
+}
