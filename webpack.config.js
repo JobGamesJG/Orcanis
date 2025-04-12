@@ -5,7 +5,7 @@ const path = require("path");
 module.exports = {
     entry: {
         popup: "./src/popup.jsx",
-        reorder: "./src/lisahockey.jsx",
+        lisahockey: "./src/lisahockey.jsx",
     },
     output: { path: path.resolve(__dirname, "dist"), filename: "[name].js" },
     module: {

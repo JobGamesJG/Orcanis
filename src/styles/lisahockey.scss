@@ -8,6 +8,43 @@ $Hbs-primary-hover: #743a37;
 $text: #fff;
 $text-dark: #999;
 
+//main elements
+.HJK {
+    position: unset;
+
+    width: 100%;
+
+    flex-wrap: unset !important;
+
+    display: flex !important;
+    flex-direction: row;
+
+    align-items: center !important;
+
+    div {
+        width: max-content;
+        max-width: unset;
+        flex: unset;
+
+        span {
+            width: max-content;
+        }
+    }
+}
+
+//elements
+.JK-wrapper {
+    width: 100% !important;
+    display: flex;
+    justify-content: space-between;
+
+    div {
+        margin-left: 1rem;
+    }
+
+    margin-right: auto;
+}
+
 .reorder-button {
     cursor: pointer;
 
@@ -17,12 +54,13 @@ $text-dark: #999;
     font-weight: bold;
 
     align-items: center;
-    justify-content: center;
     text-align: center;
 
     padding: 0.4rem 1rem;
     border: 1px solid #dcdfe6;
     border-radius: 0.4rem;
+
+    margin: 0 0.4rem;
 
     transition: all 0.1s;
 

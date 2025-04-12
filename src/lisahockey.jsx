@@ -1,28 +1,52 @@
-import "./styles/reorder.scss";
+import "./styles/lisahockey.scss";
+
+//HJK = Hijacked item
+//JK = JobKTools added item
 
 const observer = new MutationObserver(() => {
     Array.from(document.getElementsByClassName("el-row mt-1")).forEach((DataRow) => {
         // Check if the button already exists to prevent adding it multiple times
-
         if (!DataRow.querySelector("div.JK-wrapper")) {
             addHubDiv(DataRow);
         }
 
-        const mainDiv = DataRow.querySelector("div.JK-wrapper");
+        if (!DataRow.querySelector("div.paidData-wrapper")) {
+            addPaidData(DataRow.querySelector("div.JK-wrapper"));
+        }
 
         if (!DataRow.querySelector("button.reorder-button")) {
-            addReorderButton(mainDiv);
+            addReorderButton(DataRow.querySelector("div.JK-wrapper"));
         }
 
-        if (!DataRow.querySelector("div.paidData-wrapper")) {
-            addPaidData(mainDiv);
-        }
+        //continous items//
 
-        calcPaidData(mainDiv);
+        calcPaidData(DataRow.querySelector("div.JK-wrapper"));
+
+        //finishers
+        HJKReorder(DataRow);
     });
 });
 
 observer.observe(document.body, { subtree: true, childList: true, attributes: true });
+
+//HJK reorder
+const HJKReorder = (parent) => {
+    if (parent.classList.contains("HJK")) return;
+
+    //Hijack css//
+    parent.classList.add("HJK");
+
+    //reorder
+    const container = parent;
+    const children = Array.from(container.children);
+
+    const reorder = children[2];
+    const target = children[1]; // The second element (you want to insert before this)
+
+    if (reorder && target) {
+        container.insertBefore(reorder, target);
+    }
+};
 
 //main div
 const addHubDiv = (parent) => {
@@ -103,42 +127,31 @@ const reorderByDateNewOld = () => {
 
 //paid data
 const calcPaidData = (parent) => {
-    if (!document.querySelector("td.el-table_1_column_8.el-table__cell div span")) {
-        return;
-    }
-
     let tbody = document.querySelector(".el-table__body tbody");
     let rows = Array.from(tbody.querySelectorAll("tr.el-table__row"));
+
+    if (!Array.from(rows[0].children)[7]) return;
 
     let uitbetaald = 0;
 
     rows.forEach((row) => {
-        let isPaid = row.querySelector(
-            "td.el-table_1_column_8.el-table__cell div span",
-        ).textContent;
+        let isPaid = Array.from(row.children);
 
-        if (isPaid == "Nee") {
-            let amount = row
-                .querySelector("td.el-table_1_column_5.el-table__cell div span strong")
-                .textContent.replace("€", "")
-                .replace(",", ".");
+        if (isPaid[7].textContent == "Nee") {
+            let amount = isPaid[4].textContent.replace("€", "").replace(",", ".");
 
             uitbetaald += Number(amount);
         }
     });
 
-    if (parent.querySelector("a").innerText.replace("€", "").replace(" ", "") == "undefined") {
-        console.log(" test");
-
-        parent.querySelector("a").innerText = uitbetaald.toFixed(2);
+    if (parent.querySelector("a").innerText.replace("€", "").replace(" ", "") == "loading...") {
+        parent.querySelector("a").innerText = ` € ${uitbetaald.toFixed(2)}`;
     } else if (
         parent.querySelector("a").innerText.replace("€", "").replace(" ", "") !=
         uitbetaald.toFixed(2)
     ) {
-        parent.querySelector("a").innerText = uitbetaald.toFixed(2);
+        parent.querySelector("a").innerText = ` € ${uitbetaald.toFixed(2)}`;
     }
-
-    return uitbetaald.toFixed(2);
 };
 
 const addPaidData = (parent) => {
@@ -150,7 +163,7 @@ const addPaidData = (parent) => {
     wrapper.appendChild(text);
 
     const data = document.createElement("a");
-    data.innerText = ` € ${calcPaidData(wrapper)}`;
+    data.innerText = "loading...";
     wrapper.appendChild(data);
 
     parent.appendChild(wrapper);

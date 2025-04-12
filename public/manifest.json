@@ -14,7 +14,7 @@
     "content_scripts": [
         {
             "matches": ["https://mijn.lisahockey.nl/*"],
-            "js": ["reorder.js"]
+            "js": ["lisahockey.js"]
         }
     ]
 }
