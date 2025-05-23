@@ -32,6 +32,11 @@ $text-dark: #999;
     }
 }
 
+//fix lisahockey container width
+.app-container {
+    max-width: unset !important;
+}
+
 //elements
 .JK-wrapper {
     width: 100% !important;

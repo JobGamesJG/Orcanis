@@ -1,6 +1,9 @@
 {
     "supported_sites": [
         {
+            "hostname": "jobgamesjg.xyz"
+        },
+        {
             "hostname": "mijn.lisahockey.nl"
         }
     ]

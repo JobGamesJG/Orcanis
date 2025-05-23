@@ -1,12 +1,12 @@
 {
     "manifest_version": 3,
-    "name": "JobK Tools",
+    "name": "Orcanis",
     "description": "Variantion of tools made by JobK",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "icons": {
         "512": "./icons/icon-512.png"
     },
-    "permissions": ["tabs"],
+    "permissions": ["tabs", "storage"],
     "host_permissions": ["<all_urls>"],
     "action": {
         "default_popup": "popup.html"
