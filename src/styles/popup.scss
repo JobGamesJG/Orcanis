@@ -17,6 +17,19 @@ $text-dark: #585858;
     --sups: 0;
 }
 
+//global styling
+.button {
+    transition: background 0.3s ease;
+    cursor: pointer;
+
+    padding: 0.3rem 0.4rem;
+    border-radius: 0.3rem;
+
+    &:hover {
+        background: rgba(#272727, 0.3);
+    }
+}
+
 * {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
@@ -78,7 +91,7 @@ body {
     }
 }
 
-.popup-sites {
+.popup-list {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -87,28 +100,33 @@ body {
 
     font-size: 0.4rem;
 
-    &.active {
-        .popup-sites-header {
-            border-radius: 1.5rem 1.5rem 0.3rem 0.3rem;
+    &.deactive {
+        .popup-list-header {
+            border-radius: 1.5rem;
 
             svg {
                 transform: rotateZ(180deg);
             }
         }
 
-        .popup-supportedSites {
-            height: calc(var(--sups) * 3.13rem);
+        .popup-list-items {
+            height: 0 !important;
 
-            opacity: 1;
+            opacity: 0;
         }
+    }
+
+    &.Fea {
+        margin-bottom: 1rem;
     }
 }
 
-.popup-sites-header {
+.popup-list-header {
     transition: all 0.5s;
 
     background: $background-secondary;
-    border-radius: 1.5rem;
+
+    border-radius: 1.5rem 1.5rem 0.3rem 0.3rem;
 
     width: 18.5rem;
     padding: 1rem 1.5rem;
@@ -134,7 +152,7 @@ body {
     }
 }
 
-.popup-supportedSites {
+.popup-list-items {
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -142,8 +160,6 @@ body {
     justify-content: center;
     text-align: center;
 
-    opacity: 0;
-    height: 0;
     overflow: hidden;
 
     p {
@@ -186,132 +202,4 @@ body {
     i {
         font-size: 0.5rem;
     }
-
-    p {
-        cursor: pointer;
-    }
 }
-
-// .hostname-wrapper {
-//     width: 20rem;
-
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-
-//     padding: 1rem;
-//     text-align: center;
-
-//     p {
-//         font-size: 0.8rem;
-//         font-weight: 600;
-//         margin-right: 0.3rem;
-
-//         color: #000;
-//     }
-
-//     svg {
-//         color: $supported;
-//         font-size: 1rem;
-
-//         &.x {
-//             color: $unspported;
-//         }
-//     }
-// }
-
-// .main-wrapper {
-//     transition: all 0.5s;
-
-//     width: 20rem;
-
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-
-//     div:first-of-type {
-//         transition: all 0.5s;
-
-//         background: $background-secondary;
-//         border-radius: 1.5rem 1.5rem 0.3rem 0.3rem;
-
-//         width: 18.5rem;
-//         padding: 1rem 1.5rem;
-
-//         display: flex;
-//         justify-content: space-between;
-//         align-items: center;
-
-//         margin-bottom: 0.15rem;
-
-//         p {
-//             font-size: 0.8rem;
-//             font-weight: 700;
-//         }
-
-//         svg {
-//             transition: all 0.5s;
-//             background: $background;
-//             padding: 0.3rem;
-//             border-radius: 100%;
-
-//             font-size: 0.8rem;
-//         }
-//     }
-
-//     &.active {
-//         div:first-of-type {
-//             border-radius: 1.5rem;
-
-//             svg {
-//                 transform: rotateZ(180deg);
-//             }
-//         }
-//     }
-// }
-
-// .main-supported {
-//     transition: all 0.2s ease;
-//     z-index: -1;
-
-//     width: 20rem;
-//     height: 100%;
-
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: flex-start;
-//     align-items: center;
-
-//     > p {
-//         background: $background-secondary;
-//         border-radius: 0.3rem;
-
-//         width: 18.5rem;
-
-//         padding: 1rem 1.5rem;
-
-//         text-align: center;
-//         font-weight: 500;
-//         font-size: 0.8rem;
-
-//         color: rgba(#1f1f1f, 0.7);
-
-//         margin-bottom: 0.15rem;
-//     }
-
-//     p:last-of-type {
-//         border-radius: 0.3rem 0.3rem 1.5rem 1.5rem;
-//     }
-
-//     &.active {
-//         opacity: 0;
-//         height: 0;
-//         overflow: hidden;
-//     }
-// }
-
-// .footer-wrapper {
-//     height: 10rem;
-//     width: 20rem;
-// }

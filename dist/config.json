@@ -6,5 +6,21 @@
         {
             "hostname": "mijn.lisahockey.nl"
         }
-    ]
+    ],
+    "lisaFeatures": {
+        "saveID": "isLisaFeatures",
+
+        "title": "Lisa Hockey Added Features",
+        "features": [
+            {
+                "feature": "Reorder Button"
+            },
+            {
+                "feature": "Not paid yet"
+            },
+            {
+                "feature": "Body resizing"
+            }
+        ]
+    }
 }

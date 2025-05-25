@@ -4,6 +4,8 @@ import ReactDOM from "react-dom/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck, faCircleXmark, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
+import { LisaFeatures } from "./LisaFeatures.jsx";
+
 import appConfig from "../public/config.json";
 
 import "./styles/popup.scss";
@@ -14,14 +16,12 @@ const Popup = () => {
     const [hostname, setHostname] = useState("");
     const [supported, setSupported] = useState(false);
 
-    const [active, setActive] = useState(false);
-
+    //handle header
     useEffect(() => {
-        // Query the active tab in the current window
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             if (tabs.length > 0) {
                 const supported = new URL(tabs[0].url);
-                setHostname(supported.hostname); // Extract hostname
+                setHostname(supported.hostname);
 
                 appConfig.supported_sites.forEach((site) => {
                     if (site.hostname == supported.hostname) {
@@ -32,7 +32,22 @@ const Popup = () => {
         });
     }, []);
 
-    document.documentElement.style.setProperty("--sups", appConfig.supported_sites.length);
+    //save data
+    const [active, setActive] = useState(false);
+
+    useEffect(() => {
+        chrome.storage.sync.get(["isSupportedList"], (result) => {
+            setActive(result.isSupportedList ?? false);
+        });
+    }, []);
+
+    const toggleSetting = () => {
+        const newValue = !active;
+        setActive(newValue);
+        chrome.storage.sync.set({ isSupportedList: newValue });
+    };
+
+    //set listlenght
 
     return (
         <>
@@ -45,21 +60,30 @@ const Popup = () => {
                     <FontAwesomeIcon className="x" icon={faCircleXmark} />
                 )}
             </div>
-            <div className={`popup-sites ${active ? "active" : ""}`}>
-                <div className="popup-sites-header">
+            {hostname == "mijn.lisahockey.nl" ? (
+                <LisaFeatures props={appConfig.lisaFeatures} />
+            ) : (
+                ""
+            )}
+            <div className={`popup-list ${active ? "" : "deactive"}`}>
+                <div className="popup-list-header button" onClick={toggleSetting}>
                     <h1>Supported Sites</h1>
-                    <FontAwesomeIcon icon={faChevronDown} onClick={() => setActive(!active)} />
+                    <FontAwesomeIcon icon={faChevronDown} />
                 </div>
-                <div className="popup-supportedSites">
+                <div
+                    className="popup-list-items"
+                    style={{ height: `calc(${appConfig.supported_sites.length} * 3.13rem)` }}>
                     {appConfig.supported_sites.map((site, key) => (
                         <p key={key}>{site.hostname}</p>
                     ))}
                 </div>
             </div>
             <div className="popup-footer">
-                <p onClick={() => window.open("https://jobgamesjg.xyz/")}>About me</p>
+                <p className="button" onClick={() => window.open("https://jobgamesjg.xyz/")}>
+                    About me
+                </p>
                 <i>●</i>
-                <p>info</p>
+                <p className="button">info</p>
             </div>
         </>
     );
