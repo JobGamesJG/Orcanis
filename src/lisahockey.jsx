@@ -14,7 +14,7 @@ const observer = new MutationObserver(() => {
             addPaidData(DataRow.querySelector("div.JK-wrapper"));
         }
 
-        if (!DataRow.querySelector("button.reorder-button")) {
+        if (!DataRow.querySelector("p.reorder-button")) {
             addReorderButton(DataRow.querySelector("div.JK-wrapper"));
         }
 
@@ -57,8 +57,8 @@ const addHubDiv = (parent) => {
 };
 
 const addReorderButton = (parent) => {
-    const button = document.createElement("button");
-    button.className = "reorder-button JK";
+    const button = document.createElement("p");
+    button.className = "reorder-button JK button";
     button.innerText = "Reorder";
     button.addEventListener("click", async () => {
         reorderByDateNewOld();
@@ -145,12 +145,12 @@ const calcPaidData = (parent) => {
     });
 
     if (parent.querySelector("a").innerText.replace("€", "").replace(" ", "") == "loading...") {
-        parent.querySelector("a").innerText = ` € ${uitbetaald.toFixed(2)}`;
+        parent.querySelector("a").innerText = ` € ${uitbetaald.toFixed(2).replace(".", ",")}`;
     } else if (
         parent.querySelector("a").innerText.replace("€", "").replace(" ", "") !=
-        uitbetaald.toFixed(2)
+        uitbetaald.toFixed(2).replace(".", ",")
     ) {
-        parent.querySelector("a").innerText = ` € ${uitbetaald.toFixed(2)}`;
+        parent.querySelector("a").innerText = ` € ${uitbetaald.toFixed(2).replace(".", ",")}`;
     }
 };
 
@@ -159,7 +159,7 @@ const addPaidData = (parent) => {
     wrapper.className = "paidData-wrapper JK";
 
     const text = document.createElement("p");
-    text.innerText = "Not paid yet: ";
+    text.innerText = "Nog niet betaald: ";
     wrapper.appendChild(text);
 
     const data = document.createElement("a");
