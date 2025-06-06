@@ -202,4 +202,19 @@ body {
     i {
         font-size: 0.5rem;
     }
+
+    h1 {
+        transition: all ease 0.2s;
+        position: absolute;
+        left: 0.5rem;
+
+        font-size: 0.6rem;
+        padding: 1rem;
+
+        opacity: 0;
+
+        &.active {
+            opacity: 1;
+        }
+    }
 }

@@ -7,12 +7,14 @@ import { faCircleCheck, faCircleXmark, faChevronDown } from "@fortawesome/free-s
 import { LisaFeatures } from "./LisaFeatures.jsx";
 
 import appConfig from "../public/config.json";
+import manifest from "../public/manifest.json";
 
 import "./styles/popup.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("react-target"));
 
 const Popup = () => {
+    const [showVersion, setshowVersion] = useState(false);
     const [hostname, setHostname] = useState("");
     const [supported, setSupported] = useState(false);
 
@@ -52,7 +54,7 @@ const Popup = () => {
     return (
         <>
             <div className="popup-hostname">
-                <img src="../../icons/icon-512.png" />
+                <img src="../../icons/icon-512.png" onClick={() => setshowVersion(!showVersion)} />
                 <h1>{hostname || "Loading.."}</h1>
                 {supported ? (
                     <FontAwesomeIcon icon={faCircleCheck} />
@@ -79,6 +81,9 @@ const Popup = () => {
                 </div>
             </div>
             <div className="popup-footer">
+                <h1 className={`popup-version ${showVersion ? "active" : ""}`}>
+                    {manifest.version}
+                </h1>
                 <p className="button" onClick={() => window.open("https://jobgamesjg.xyz/")}>
                     About me
                 </p>

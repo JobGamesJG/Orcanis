@@ -13,13 +13,22 @@
         "title": "Lisa Hockey Added Features",
         "features": [
             {
+                "feature": "Totaal niet uitbetaald data"
+            },
+            {
+                "feature": "Volgende maand uitbetaald data"
+            },
+            {
                 "feature": "Reorder Button"
             },
             {
-                "feature": "Not paid yet"
+                "feature": "agenda view"
             },
             {
-                "feature": "Body resizing"
+                "feature": "info resizing"
+            },
+            {
+                "feature": "naar boven button"
             }
         ]
     }

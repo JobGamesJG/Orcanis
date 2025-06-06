@@ -12,7 +12,7 @@ $text: #1f1f1f;
 $text-dark: #585858;
 
 //main elements
-.HJK {
+#HOR {
     position: unset;
 
     width: 100%;
@@ -24,7 +24,7 @@ $text-dark: #585858;
 
     align-items: center !important;
 
-    div {
+    > div {
         width: max-content;
         max-width: unset;
         flex: unset;
@@ -41,7 +41,7 @@ $text-dark: #585858;
 }
 
 //elements
-.JK-wrapper {
+.Orcanis-wrapper {
     background: $background-secondary;
 
     width: 100% !important;
@@ -52,7 +52,7 @@ $text-dark: #585858;
     padding: 0.6rem;
     margin: 0 1rem;
 
-    div {
+    > div {
         margin-left: 1rem;
     }
 }
@@ -81,12 +81,14 @@ $text-dark: #585858;
     }
 }
 
-.paidData-wrapper {
+.Orcanis-paidData {
     display: flex;
 
     align-items: center;
     justify-content: center;
     text-align: center;
+
+    gap: 1rem;
 
     p {
         font-weight: bold;
@@ -96,5 +98,6 @@ $text-dark: #585858;
 
     a {
         margin-left: 0.3rem;
+        font-weight: normal;
     }
 }
