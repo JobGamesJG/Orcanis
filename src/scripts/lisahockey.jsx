@@ -53,6 +53,9 @@ const parseDate = (input) => {
 };
 
 const observer = new MutationObserver(() => {
+    //send to console
+    updateStatus();
+
     const dataBar = document.querySelector("div.el-row.mt-1");
     if (!dataBar) return;
 
@@ -68,6 +71,20 @@ const observer = new MutationObserver(() => {
     calcPaidData(orcanisWrapper);
     addToAgenda();
 });
+
+const updateStatus = () => {
+    if (document.querySelector("div.Orcanis-wrapper")) {
+    }
+
+    if (document.querySelector("div.Orcanis-paidData")) {
+    }
+
+    if (document.querySelector("p.reorder-button")) {
+    }
+
+    if (document.querySelector("div.Orcanis-Overlay")) {
+    }
+};
 
 observer.observe(document.body, { subtree: true, childList: true, attributes: true });
 
@@ -210,6 +227,7 @@ const calcPaidData = (parent) => {
 //agenda
 const addAgenda = (parent) => {
     if (parent.querySelector("div.Orcanis-Overlay")) return;
+    root == "";
 
     const container = document.getElementById("root");
 
@@ -273,7 +291,12 @@ const addToAgenda = () => {
                 parseDate(listDate.innerText)[2] == agendaMonthYear()[1] &&
                 parseDate(listDate.innerText)[1] == agendaMonthYear()[0]
             ) {
-                if (!dayDate.querySelector("i.marker")) {
+                if (
+                    !dayDate.querySelector("i.marker") &&
+                    !dayDate.classList.contains(
+                        "react-calendar__month-view__days__day--neighboringMonth",
+                    )
+                ) {
                     if (
                         parseDate(listDate.innerText)[0] == dayDate.querySelector("abbr").innerText
                     ) {

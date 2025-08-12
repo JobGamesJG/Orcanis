@@ -13,25 +13,6 @@ $unspported: #b87d7d;
 $text: #1f1f1f;
 $text-dark: #7c7c7c;
 
-* {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-    font-style: normal;
-
-    scroll-behavior: smooth !important;
-    margin: 0;
-}
-
-body {
-    font-family: "Inter", sans-serif;
-    background: $background;
-
-    padding: 0;
-    margin: 0;
-
-    color: $text;
-}
-
 .Orcanis-Overlay {
     position: fixed;
     right: 0;

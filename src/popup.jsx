@@ -4,8 +4,6 @@ import ReactDOM from "react-dom/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck, faCircleXmark, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-import { LisaFeatures } from "./LisaFeatures.jsx";
-
 import appConfig from "../public/config.json";
 import manifest from "../public/manifest.json";
 
@@ -43,13 +41,11 @@ const Popup = () => {
         });
     }, []);
 
-    const toggleSetting = () => {
-        const newValue = !active;
-        setActive(newValue);
-        chrome.storage.sync.set({ isSupportedList: newValue });
+    const toggleSetting = (key, valueSetter, currentValue) => {
+        const newValue = !currentValue;
+        valueSetter(newValue);
+        chrome.storage.sync.set({ [key]: newValue });
     };
-
-    //set listlenght
 
     return (
         <>
@@ -62,13 +58,10 @@ const Popup = () => {
                     <FontAwesomeIcon className="x" icon={faCircleXmark} />
                 )}
             </div>
-            {hostname == "mijn.lisahockey.nl" ? (
-                <LisaFeatures props={appConfig.lisaFeatures} />
-            ) : (
-                ""
-            )}
             <div className={`popup-list ${active ? "" : "deactive"}`}>
-                <div className="popup-list-header button" onClick={toggleSetting}>
+                <div
+                    className="popup-list-header button"
+                    onClick={() => toggleSetting("isSupportedList", setActive, active)}>
                     <h1>Supported Sites</h1>
                     <FontAwesomeIcon icon={faChevronDown} />
                 </div>
